@@ -45,7 +45,7 @@ function isTitle(target) {
 }
 
 // let searchStream = fromEvent(searchButton, 'click');
-let searchStream = fromEvent(searchInput, 'change');
+let searchStream = fromEvent(searchInput, 'input');
 
 let requestStream = searchStream.pipe(debounceTime(250), filter(() => searchInput.value !== ""), map(makeQueryUrl), flatMap(getObservableResponse), flatMap(makeCastQueryUrls), flatMap(getObservableResponse));
 

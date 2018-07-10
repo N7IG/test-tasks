@@ -53,7 +53,7 @@ main aside {
     overflow-y: scroll;
 }
 
-li h2 {
+.mov-title {
     cursor: pointer;
 }
 

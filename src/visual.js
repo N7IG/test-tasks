@@ -4,19 +4,23 @@ let average = document.querySelector('.average');
 let poster = document.querySelector('.mov-poster');
 let description = document.querySelector('.mov-description');
 
+function htmlToElement(html) {
+    var template = document.createElement('template');
+    html = html.trim(); 
+    template.innerHTML = html;
+
+    return template.content.firstChild;
+}
 
 function displayElement(movieJSON){
-    // console.log(movieJSON);
     
     let movie = constructElement(movieJSON.title, 'http://image.tmdb.org/t/p/w185' + movieJSON.backdrop_path, movieJSON.credits.cast.slice(0, 3), movieJSON.id);
-    resultList.appendChild(movie);
+    moviesListElement.appendChild(movie);
     let hr = document.createElement("hr");
-    resultList.appendChild(hr);
+    moviesListElement.appendChild(hr);
 
-    //THIS PART IS WEIRD TOO
-    if (movie === resultList.firstChild) {
-        movie.firstChild.click();
-        // console.log(movie.getAttribute('data-id')); 
+    if (movie === moviesListElement.firstChild) {
+        movie.querySelector('h2').click();
     }
 }
 
@@ -28,42 +32,28 @@ function updateDetails(resp) {
     description.innerHTML = resp.overview;
 }
 
-function refreshList(){
-    resultList.innerHTML = "";
+function clearMoviesList(){
+    moviesListElement.innerHTML = "";
 }
 
 function constructElement(title, imgURL, castArray, movId){
-    let actorNumber = 3;
+  
+    let castListElm = document.createElement("ul");
+    castArray.forEach(actor => {
+        castListElm.innerHTML += `<li>${actor.name}</li>`;
+    });
 
-    let resElm = document.createElement("li"); 
-    resElm.setAttribute("data-id", movId);
+    let movieElementHTML = 
+    `<li data-id="${movId}">
+        <h2 class="mov-title">${title}</h2>
+        <div>
+            <img src="${imgURL}" class="thumbnail">
+        </div>
+        <div>
+            <hx>Cast:</hx>
+            <ul>${castListElm.innerHTML}</ul>
+        </div>
+    </li>`
 
-    let titleEl = document.createElement("h2");
-    titleEl.innerHTML = title;
-    resElm.appendChild(titleEl);
-    let imgWrapper = document.createElement("div");
-    let imgEl = document.createElement("img");
-    imgEl.src = imgURL;
-    imgEl.classList.add('thumbnail');
-    imgWrapper.appendChild(imgEl);
-    resElm.appendChild(imgWrapper);
-    let cast = document.createElement("hx");
-    cast.innerHTML = "Cast:";
-    resElm.appendChild(cast);
-
-    let actorList = document.createElement("ul");
-    let tmpLi = null;
-    for (i = 0; i < Math.min(actorNumber, castArray.length); i++) { 
-        tmpLi = document.createElement("li");
-        tmpLi.innerHTML = castArray[i].name;
-        actorList.appendChild(tmpLi);
-    }
-
-    let castBlock = document.createElement("div");
-    castBlock.appendChild(cast);
-    castBlock.appendChild(actorList);
-
-    resElm.appendChild(castBlock);
-
-    return resElm;
+    return htmlToElement(movieElementHTML);
 }

@@ -1,27 +1,21 @@
 <!DOCTYPE html>
-
 <html>
   <head>
   <title>RX Movies</title>
   <link rel="stylesheet" type="text/css" href="./styles/styles.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 </head>
-
 <body>
-
   <header>
     <h1>RX Movies</h1>
     <div>
       <input type="text" class="query-input">
-      <!-- <input type="submit" value="Search" class="query-submit"> -->
     </div>
   </header>
-
   <main>
     <aside class="movie-aside">
       <ul class="result-list"></ul>
     </aside>
-
     <div class="info-box">
         <h2 class="info-title">Movie Title</h2>
         <img src="" alt = "Poster" class="mov-poster">
@@ -38,11 +32,9 @@
         </p>
     </div>
   </main>
-
-  <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/rxjs/2.2.26/rx.js"></script> -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
-  <script src="./src/script.js"></script>
   <script src="./src/visual.js"></script>
-
-
-</body></html>
+  <script src="./src/MovieApi.js"></script>
+  <script src="./src/main.js"></script>  
+</body>
+</html>

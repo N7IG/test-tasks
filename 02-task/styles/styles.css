@@ -1,0 +1,34 @@
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    margin: 0;
+}
+
+p {
+    height: 30px;
+    text-align: center;
+}
+
+path {
+    
+    stroke: pink;
+}
+
+g path {
+    stroke: black;
+}
+
+g.tick {
+    color: black;
+    font-size: large;
+}
+
+svg {
+    background-color: #3a9a8d;
+    width: calc(100vw - 50px);
+    height: 95vh;
+    padding: 20px 0 0 50px;
+}

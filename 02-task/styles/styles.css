@@ -12,10 +12,10 @@ p {
     text-align: center;
 }
 
-path {
+/* path {
     
     stroke: pink;
-}
+} */
 
 g path {
     stroke: black;
@@ -28,7 +28,7 @@ g.tick {
 
 svg {
     background-color: #3a9a8d;
-    width: calc(100vw - 50px);
-    height: 95vh;
+    /* width: calc(100vw - 50px);
+    height: 95vh; */
     padding: 20px 0 0 50px;
 }

@@ -4,8 +4,8 @@ class Chart {
         this.height = height;
 
         this.svg = d3.select("body").append("svg")
-            .attr("width", 1300)
-            .attr("height", 900);
+            // .attr("width", 1300)
+            .attr("height", height + 50);
         
         this.initialX = initX;
         this.timeArray = [];
@@ -47,13 +47,15 @@ class Chart {
     }
 
     updateXDomain() {
-        this.axes.x.domain([this.timeArray[0] || new Date(), new Date()]);
+        // console.log(parseInt(this.svg.style("width"), 10));
+        // .range([0, this.svg.style("width")]);
+        this.axes.x.domain([this.timeArray[0] || new Date(), new Date()]).range([0, parseInt(this.svg.style("width"), 10)]); 
     }
 
     getLine() {
         return d3.line()
             .x((d, i) => {return this.axes.x(this.timeArray[i])})
             .y((d, i) => {return this.height - d*this.height});
-            // .curve(d3.curveCardinal);;
+            // .curve(d3.curveCardinal);
     }
 } 

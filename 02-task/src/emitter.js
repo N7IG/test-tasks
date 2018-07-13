@@ -1,7 +1,7 @@
 const { from, interval, of } = rxjs;
 const { map, flatMap} = rxjs.operators;
 
-let chart = new Chart(new Date, 800);
+let chart = new Chart(new Date, 600);
 
 let pathDelay = 1000;
 
@@ -22,22 +22,22 @@ function randomList(pathList) {
 }
 
 let pathArray = [];
-pathArray.push(new Path(chart.initializePath("orange", 2), pathDelay));
-pathArray.push(new Path(chart.initializePath("#e600ff", 2), pathDelay));
-pathArray.push(new Path(chart.initializePath("yellow", 2), pathDelay));
+pathArray.push(new Path(chart.initializePath("orange", 2), pathDelay, lineFunction));
+pathArray.push(new Path(chart.initializePath("#e600ff", 2), pathDelay, lineFunction));
+pathArray.push(new Path(chart.initializePath("yellow", 2), pathDelay, lineFunction));
 
 
-// let axis$ = interval(Math.max(300, pathDelay));
+let axis$ = interval(17);
 
 let paths$ = interval(pathDelay).pipe(map(() => randomList(pathArray)));
 
 paths$.subscribe(
     (valueList) => {
         // console.log(valueList);       
-        chart.updateXDomain();
+        // chart.updateXDomain();
         chart.updateTime();
-        pathArray.forEach((path, index) => path.render(valueList[index], lineFunction));
-        chart.renderXAxis();
+        pathArray.forEach((path, index) => path.updateData(valueList[index]));
+        // chart.renderXAxis();
     }, 
     () => console.log("error"),
     () => console.log("completed")
@@ -71,10 +71,14 @@ paths$.subscribe(
 //     () => console.log("completed")
 // );
 
-// axis$.subscribe(
-//     () => chart.renderXAxis(),
-//     () => console.log("error"),
-//     () => console.log("completed")
-// );
+axis$.subscribe(
+    () => {
+        chart.updateXDomain();
+        pathArray.forEach((path) => path.render());
+        chart.renderXAxis();
+    },
+    () => console.log("error"),
+    () => console.log("completed")
+);
 
 

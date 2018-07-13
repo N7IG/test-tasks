@@ -5,6 +5,7 @@ html {
 body {
     min-height: 100%;
     margin: 0;
+    background-color: #21242b;
 }
 
 p {
@@ -28,4 +29,5 @@ g.tick text {
 svg {
     background-color: #282c35;
     padding: 20px 0 0 50px;
+    width: calc(100% - 50px);
 }

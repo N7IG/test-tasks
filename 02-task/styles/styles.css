@@ -12,23 +12,20 @@ p {
     text-align: center;
 }
 
-/* path {
-    
-    stroke: pink;
-} */
-
 g path {
-    stroke: black;
+    stroke: #69a0cf;
+    stroke-width: 7px;
 }
 
-g.tick {
-    color: black;
-    font-size: large;
+g line {
+    stroke: #69a0cf;
+}
+
+g.tick text {
+    fill: #69a0cf;
 }
 
 svg {
-    background-color: #3a9a8d;
-    /* width: calc(100vw - 50px);
-    height: 95vh; */
+    background-color: #282c35;
     padding: 20px 0 0 50px;
 }

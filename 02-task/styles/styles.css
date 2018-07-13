@@ -26,8 +26,47 @@ g.tick text {
     fill: #69a0cf;
 }
 
+.svg-container {
+    height: 70vh;
+}
+
 svg {
     background-color: #282c35;
     padding: 20px 0 0 50px;
     width: calc(100% - 50px);
+    height: calc(100% - 20px);
+}
+
+.path-controls{
+    padding: 0 50px;
+    color: #dadada;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.path-controls div{
+    margin-bottom: 7px;
+}
+
+.path-label {
+    margin-left: 7px;
+}
+
+input[type="color"] {
+	-webkit-appearance: none;
+    border: none;
+    border-radius: 3px;
+    background-color: #dadada00;
+    outline: none;
+}
+
+input[type="color"]:hover {
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+    cursor: pointer;
+}
+
+.path-chbox:hover {
+    box-shadow: 0px 0px 10px 0px rgba(255,0,255,1);
 }

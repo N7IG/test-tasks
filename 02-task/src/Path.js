@@ -16,4 +16,12 @@ class Path {
     changeColor(color) {
         this.svgPath.attr('stroke', color);
     }
+
+    hide() {
+        this.svgPath.style("opacity", 0);
+    }
+
+    makeVisible() {
+        this.svgPath.style("opacity", 1);
+    }
 }

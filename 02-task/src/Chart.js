@@ -1,25 +1,26 @@
 class Chart {
 
-    constructor(initX, height) {
-        this.svg = d3.select("div.svg-container").append("svg")        
-        this.initialX = initX;
+    constructor() {
+        this.svg = d3.select("div.svg-container").append("svg");
         this.timeArray = [];
         this.paddingBottom = 50;
         this.axes = {};
+        this.initializeAxes();
     }
 
     initializeAxes() {
+        if(!this.axes.y) {
+            this.axes.y = d3.scaleLinear().domain([0, 1]).range([parseInt(this.svg.style("height"), 10) - this.paddingBottom, 0]);
+            this.axes.yScale = d3.axisLeft().scale(this.axes.y).tickSize(10);
+            this.axes.yAxisG = this.svg.append('g')
+                .call(this.axes.yScale);
 
-        this.axes.y = d3.scaleLinear().domain([0, 1]).range([parseInt(this.svg.style("height"), 10) - this.paddingBottom, 0]);
-        this.axes.yScale = d3.axisLeft().scale(this.axes.y).tickSize(10);
-        this.axes.yAxisG = this.svg.append('g')
-            .call(this.axes.yScale);
-
-        this.axes.x = d3.scaleTime().domain([new Date(), new Date()]); 
-        this.axes.xScale = d3.axisBottom().scale(this.axes.x);     
-        this.axes.xAxisG = this.svg.append('g')
-            .attr("transform", `translate(0, ${parseInt(this.svg.style("height"), 10) - this.paddingBottom})`)
-            .call(this.axes.xScale);
+            this.axes.x = d3.scaleTime().domain([new Date(), new Date()]); 
+            this.axes.xScale = d3.axisBottom().scale(this.axes.x);     
+            this.axes.xAxisG = this.svg.append('g')
+                .attr("transform", `translate(0, ${parseInt(this.svg.style("height"), 10) - this.paddingBottom})`)
+                .call(this.axes.xScale);
+        }
     }
 
     updateTime(){

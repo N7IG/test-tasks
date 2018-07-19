@@ -1,27 +1,41 @@
 class Path {
-    constructor(svgLink, line) {
+    constructor(pathSelection, lineFunction) {
         this.data = [];
-        this.svgPath = svgLink;
-        this.line = line;
+        this.pathSelection = pathSelection;
+        this.line = lineFunction;
     }
 
     render() {
-        this.svgPath.attr("d", this.line(this.data));
+        // var t = d3.transition()
+        //     .duration(1000)
+        //     .ease(d3.easeLinear);
+    
+        this.pathSelection
+            // .transition(t)
+            .attr("d", this.line(this.data))
+        ;
     }
 
-    updateData(value) {
+    addData(value) {
         this.data.push(value);
     }
 
     changeColor(color) {
-        this.svgPath.attr('stroke', color);
+        this.pathSelection.attr('stroke', color);
     }
 
     hide() {
-        this.svgPath.style("opacity", 0);
+        this.pathSelection.style("opacity", 0);
     }
 
     makeVisible() {
-        this.svgPath.style("opacity", 1);
+        this.pathSelection.style("opacity", 1);
     }
 }
+
+
+    // interruptTransition() {
+
+    //     this.pathSelection.selectAll("*").interrupt();interrupt()
+    //     ;
+    // }

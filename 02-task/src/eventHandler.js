@@ -4,7 +4,7 @@ let color$ = fromEvent(settingsBlock, 'input').pipe(
     map(event => event.target), 
     filter((target) => target.className === 'path-color')
 );
-let chbox$ = fromEvent(settingsBlock, 'input').pipe(
+let checkBox$ = fromEvent(settingsBlock, 'input').pipe(
     map(event => event.target), 
     filter((target) => target.className === 'path-chbox')
 );
@@ -17,7 +17,7 @@ color$.subscribe(
     () => console.log("completed")
 );
 
-chbox$.subscribe(
+checkBox$.subscribe(
     (inputElement) => {
         if (inputElement.checked) {
             pathArray[inputElement.parentNode.getAttribute('data-id')].makeVisible();

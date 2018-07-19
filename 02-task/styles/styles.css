@@ -26,7 +26,7 @@ g.tick text {
     fill: #69a0cf;
 }
 
-.svg-container {
+#svg-container {
     height: 70vh;
 }
 

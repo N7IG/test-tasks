@@ -1,31 +1,47 @@
 const { from, fromEvent, interval, of } = rxjs;
 const { map, flatMap, filter} = rxjs.operators;
 
-const chart = new Chart();
+// let renderDelay = 17;
+
 let pathDelay = 1000;
-let renderDelay = 17;
 
-let lineFunction = chart.getLine();
+const chart = new Chart('#svg-container');
+let lineFunction = chart.getLineFunction();
 
-let pathArray = getPathArray(3);
+let pathArray = getPathArray(3, '.path-controls');
 
-let axis$ = interval(renderDelay);
-let paths$ = interval(pathDelay).pipe(map(() => randomList(pathArray)));
+// let axis$ = interval(renderDelay);
+let data$ = interval(pathDelay)
+    .pipe(map(() => getNewRandomData(pathArray)));
+let resize$ = fromEvent(window, 'resize');
 
-paths$.subscribe(
+data$.subscribe(
     (valueList) => {
-        chart.updateTime();
-        pathArray.forEach((path, index) => path.updateData(valueList[index]));
+        // chart.updateTime(new Date());
+        chart.updateTimeAxis(new Date());
+        pathArray.forEach((path, index) => path.addData(valueList[index]));
+        
+        pathArray.forEach((path) => path.render());
     }, 
     () => console.log("error"),
     () => console.log("completed")
 );
 
-axis$.subscribe(
+resize$.subscribe(
     () => {
-        chart.updateXAxis();
+        console.log('res');
         pathArray.forEach((path) => path.render());
-    },
+        chart.updateTimeAxis();
+    }, 
     () => console.log("error"),
     () => console.log("completed")
 );
+
+// axis$.subscribe(
+//     () => {
+//         chart.updateXAxis();
+//         pathArray.forEach((path) => path.render());
+//     },
+//     () => console.log("error"),
+//     () => console.log("completed")
+// );

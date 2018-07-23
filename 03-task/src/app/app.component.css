@@ -1,0 +1,15 @@
+.title-box {
+    position: absolute;
+    top: 10px;
+    display: flex;
+    align-items: center;
+}
+.app-title {
+    /* position: absolute; */
+    
+    color: #d6d6d6;
+}
+
+.angular_logo {
+    width: 70px;
+}

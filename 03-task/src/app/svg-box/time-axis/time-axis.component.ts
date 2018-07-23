@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, ElementRef} from '@angular/core';
 
 @Component({
   selector: '[time-axis]',
@@ -15,9 +15,10 @@ export class TimeAxisComponent {
   paddingTop: number = 50;
   ticks: number[];
 
-  constructor() { 
-    this.stroke = "#fff";
-    this.strokeWidth = 10;
+  constructor(element: ElementRef) { 
+    console.log(element.nativeElement);
+    this.stroke = "#b52e31"
+    this.strokeWidth = 4;
     this.height = 800;
     this.path =`M50,${this.height - this.paddingBottom}V${this.height - this.paddingBottom}H1000`;
     this.ticks = [];
@@ -26,5 +27,4 @@ export class TimeAxisComponent {
       this.ticks.push(i/10);
     }
   }
-
 }

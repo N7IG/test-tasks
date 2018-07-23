@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: '[value-axis]',
@@ -6,7 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./value-axis.component.css']
 })
 export class ValueAxisComponent {
-
   stroke: string;
   strokeWidth: number;
   height: number;
@@ -16,7 +15,7 @@ export class ValueAxisComponent {
   ticks: number[];
 
   constructor() { 
-    this.stroke = "#ff0097";
+    this.stroke = "#b52e31";
     this.strokeWidth = 10;
     this.height = 800;
     this.path = `M50,${this.height - this.paddingBottom}H50V${this.paddingTop}H50`;

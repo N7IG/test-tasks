@@ -16,7 +16,6 @@ export class TimeAxisComponent {
   ticks: number[];
 
   constructor(element: ElementRef) { 
-    console.log(element.nativeElement);
     this.stroke = "#b52e31"
     this.strokeWidth = 4;
     this.height = 800;

@@ -2,5 +2,6 @@
     [attr.stroke]="stroke" 
     fill='none' 
     [attr.stroke-width]="strokeWidth" 
-    [attr.d]="lineF(data)">
+    *ngIf="data"
+    [attr.d]="lineFunction(data[0].data)">
 </svg:path>

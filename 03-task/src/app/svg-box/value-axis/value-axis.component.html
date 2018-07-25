@@ -9,7 +9,7 @@
     *ngFor="let tick of ticks" 
     class="tick" 
     opacity="1" 
-    [style.transform]="'translate(0,' + (paddingTop + (height-paddingBottom-paddingTop)*(1-tick)) + 'px)'"
+    [style.transform]="'translate(0,' + (paddingTop + (svgHeight-paddingBottom-paddingTop)*(1-tick)) + 'px)'"
     >
     <svg:line [attr.stroke]="stroke"  stroke-width="4" x1="40" x2="60"></line>
     <svg:text fill="#fff" font-size="15" x="35" dy="0.32em">{{tick}}</text>

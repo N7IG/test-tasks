@@ -3,9 +3,11 @@ import { Point } from "./Point";
 export class PathData {
     data: Point[];
     color: string;
+    isVisible: boolean;
 
     constructor(iColor?: string ) {
         this.data = [];
+        this.isVisible = true;
         if(!iColor) {
             this.color = this.randomColor();
         } else {

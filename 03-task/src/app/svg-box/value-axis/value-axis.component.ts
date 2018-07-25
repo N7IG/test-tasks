@@ -6,9 +6,10 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./value-axis.component.css']
 })
 export class ValueAxisComponent {
+  @Input() svgHeight: number;
+
   stroke: string;
   strokeWidth: number;
-  height: number;
   path: string;
   paddingBottom: number = 50;
   paddingTop: number = 50;
@@ -17,12 +18,19 @@ export class ValueAxisComponent {
   constructor() { 
     this.stroke = "#b52e31";
     this.strokeWidth = 10;
-    this.height = 800;
-    this.path = `M50,${this.height - this.paddingBottom}H50V${this.paddingTop}H50`;
     this.ticks = [];
 
     for (var i = 0; i <= 10; i++) {
       this.ticks.push(i/10);
     }
+    
+  }
+
+  ngOnInit() {
+    this.path = `M50,${this.svgHeight - this.paddingBottom}H50V${this.paddingTop}H50`;
+  }
+
+  ngAfterViewInit() {
+    this.path = `M50,${this.svgHeight - this.paddingBottom}H50V${this.paddingTop}H50`;
   }
 }

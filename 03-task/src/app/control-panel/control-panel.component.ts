@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { PathData } from '../models/PathData';
 
 @Component({
   selector: 'app-control-panel',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ControlPanelComponent implements OnInit {
 
+  @Input() data:  PathData[];
+
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }

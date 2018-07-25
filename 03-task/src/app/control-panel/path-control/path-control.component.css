@@ -1,9 +1,7 @@
-.path-controls {
-    display: block;
-}
 
 .path-controls div{
     margin-bottom: 7px;
+    display: block;
 }
 
 .path-label {

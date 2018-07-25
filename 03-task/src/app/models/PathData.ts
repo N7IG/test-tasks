@@ -20,11 +20,11 @@ export class PathData {
     }
 
     randomColor() {
-        //from orange to light blue 
-        return `hsl(${Math.random()*170 + 30}, 100%, 50%)`; 
-    }
-
-    changeColor(iColor: string) {
-        this.color = iColor;
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
     }
 }

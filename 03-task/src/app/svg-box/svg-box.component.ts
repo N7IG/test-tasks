@@ -2,7 +2,6 @@ import { Component, OnInit, ElementRef, ViewChild, Input } from '@angular/core';
 import { scaleTime, ScaleTime, scaleLinear, ScaleLinear } from "d3-scale";
 import { DataService } from '../data.service';
 import { PathData } from '../models/PathData';
-import { Point } from '../models/Point';
 
 @Component({
   selector: 'svg-box',

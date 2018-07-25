@@ -11,8 +11,5 @@ export class PathControlComponent  {
   @Input() index:  number;
   @Input() pathdata:  PathData;
 
-  // isVisible: boolean;
-
   constructor() { }
-
 }

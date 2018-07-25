@@ -1,5 +1,4 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-// import { line, Line } from "d3-shape";
 import { scaleTime, ScaleTime, scaleLinear, ScaleLinear } from "d3-scale";
 import { DataService } from '../data.service';
 import { PathData } from '../models/PathData';
@@ -13,69 +12,30 @@ import { Point } from '../models/Point';
 export class SvgBoxComponent implements OnInit {
 
   padding = {left: 50, top: 50, right: 50, bottom: 50};
-
-  // lineF: Line<[number, number]>;
-  // lineFunction: any; //get rid of any
   data:  PathData[];
   timeAxis: ScaleTime<number, number>;
   valueAxis: ScaleLinear<number, number>;
   leftTimeBound: Date;
+  nativeElement;
+  svgWidth: number = 1000;
   
   @ViewChild("container", {read: ElementRef}) container: ElementRef;
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService, element: ElementRef) {
 
-    // this.leftTimeBound = new Date();
-    // this.leftTimeBound.setSeconds(new Date().getSeconds());
-    // console.log("leftTimeBound");
-    // console.log(this.leftTimeBound);
-    // let rightTimeBound = new Date();
-    // rightTimeBound.setSeconds(new Date().getSeconds() + 4);
-    // console.log("rightTimeBound");
-    // console.log(rightTimeBound);
+    this.nativeElement = element.nativeElement;
+    console.log(this.svgWidth);
     
     // this.timeAxis = scaleTime().domain([this.leftTimeBound, rightTimeBound]).range([0, 950]); 
-    this.timeAxis = scaleTime().range([0, 950])
+    this.timeAxis = scaleTime().range([0, this.svgWidth ])
     this.valueAxis = scaleLinear().domain([0, 1]).range([750, 50]);     
     
   }
 
   ngOnInit() {
     this.getData();
-    // console.log(this.lineF([[new Date(), 3], [new Date(), 2]]));
-    // console.log('axis - ' + this.timeAxis);
-  }
-
-  // lineFunction(points: Point[]) {
-  //   // let time = point.time;
-  //   // let value = point.value;
-  //   let arrayPoints = points.map(point => [point.time, point.value]);
-  //   return line()
-  //   .x((d) => { return 50 + this.timeAxis(d[0]); })
-  //   .y((d) => { return d[1]*100; })(arrayPoints);
-  // }
-
-  // lineFunction(points: Point[]) {
-  //   // let time = point.time;
-  //   // let value = point.value;
-  //   console.log('axisLF - '+ this.timeAxis);
-  //   console.log(points[0].value);
-  //   // console.log(this);
-
-  //   let arrayPoints = points.map(point => [point.time, point.value]);
-  //   console.log(arrayPoints);
-  //   // console.log(this.lineF(arrayPoints));
-  //   // console.log(arrayPoints);
-    
-  //   return 1;
-  // }
-
-  updateTime() {
-    let time = new Date();
-    // console.log('time : ' + time);
-    
-    this.timeAxis.domain([this.leftTimeBound?this.leftTimeBound:this.leftTimeBound = new Date(), time]); 
-  }
+    this.onResize();
+  }  
 
   getData(): void {
     this.dataService.updateData().subscribe(
@@ -92,6 +52,19 @@ export class SvgBoxComponent implements OnInit {
       }, 
       () => console.log("Error")
     );
+  }
+
+  updateTime() {
+    let time = new Date();
+    // console.log('time : ' + time);
+    
+    this.timeAxis.domain([this.leftTimeBound?this.leftTimeBound:this.leftTimeBound = new Date(), time]); 
+  }
+
+  onResize() {
+    this.svgWidth = this.nativeElement.firstChild.clientWidth;
+    this.timeAxis = scaleTime().range([0, this.svgWidth - this.padding.right - this.padding.left ]);
+    
   }
 
 }

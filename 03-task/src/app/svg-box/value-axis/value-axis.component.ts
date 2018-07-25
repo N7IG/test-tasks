@@ -25,5 +25,4 @@ export class ValueAxisComponent {
       this.ticks.push(i/10);
     }
   }
-
 }

@@ -20,12 +20,6 @@ export class DataService {
 
     // return of('hey', 'hey').pipe(map(() => this.getNewPoints()));
     return interval(1000).pipe(map(() => this.getNewPoints()));
-
-    // return of('hey').pipe(map(() => [
-    //   [new Date('1995-12-17T03:24:00'), 1], 
-    //   [new Date('1995-12-17T03:25:00'), 2], 
-    //   [new Date('1995-12-17T03:25:00'), 1]
-    // ]));
   }
 
   getNewPoints(): Point[] {  

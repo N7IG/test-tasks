@@ -17,7 +17,7 @@ export class PathComponent implements OnInit {
   @Input() valueAxis: ScaleLinear<number, number>;
   @Input() data:  PathData[];
 
-  stroke: string = '#fff';
+  // stroke: string = '#fff';
   strokeWidth: number = 2;
   // data: [ Date, number][];
   // data: [ Date, number][] = [[new Date('1995-12-17T03:24:00'), 1], [new Date('1995-12-17T03:25:00'), 5], [new Date('1995-12-17T03:26:00'), 2], [new Date('1995-12-17T03:27:00'), 4]];
@@ -35,32 +35,17 @@ export class PathComponent implements OnInit {
     // console.log(points);
     let pathString = line()
     .x((point) => { 
+      // console.log(50 + this.timeAxis(point.time));
       return 50 + this.timeAxis(point.time); 
     })
     .y((point) => { 
+      // console.log(50 + this.timeAxis(point.value));
       return this.valueAxis(point.value); 
     })(points);
     // console.log(pathString);
 
     return pathString;
   }
+  
 
-  // lineFunction(points: Point[]) {
-  //   // let time = point.time;
-  //   // let value = point.value;
-  //   console.log('axisLF - '+ this.timeAxis);
-  //   console.log(points[0].value);
-  //   // console.log(this);
-
-  //   let arrayPoints = points.map(point => [point.time, point.value]);
-  //   console.log(arrayPoints);
-  //   // console.log(this.lineF(arrayPoints));
-  //   // console.log(arrayPoints);
-    
-  //   return 1;
-  // }
-
-      // line().x((d: number[]) => { return 50 + this.timeAxis(d[0]); }).y((d: number[]) => { return d[1]*100; });
-
-
-}
+} 

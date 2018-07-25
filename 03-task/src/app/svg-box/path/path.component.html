@@ -1,7 +1,6 @@
 <svg:path class="domain" 
-    [attr.stroke]="stroke" 
+    [attr.stroke]="data.color" 
     fill='none' 
     [attr.stroke-width]="strokeWidth" 
-    *ngIf="data"
-    [attr.d]="lineFunction(data[0].data)">
+    [attr.d]="lineFunction(data.data)">
 </svg:path>

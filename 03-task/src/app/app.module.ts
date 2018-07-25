@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { SvgBoxModule } from './svg-box/svg-box.module';
+import { ControlPanelComponent } from './control-panel/control-panel.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ControlPanelComponent
   ],
   imports: [
     BrowserModule,

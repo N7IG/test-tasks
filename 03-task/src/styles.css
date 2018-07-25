@@ -1,7 +1,6 @@
 html, body {
     margin: 0;
-    padding: 50px 10px;
-    height: 100%;
+    padding: 50px 10px 0;
     background: #3a3a3a;
     color: #dadada;
     font-family: 'Montserrat', sans-serif;

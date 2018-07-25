@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Padding } from '../../models/Padding';
 
 @Component({
   selector: '[value-axis]',
@@ -7,30 +8,24 @@ import { Component, Input } from '@angular/core';
 })
 export class ValueAxisComponent {
   @Input() svgHeight: number;
+  @Input() padding: Padding;
 
   stroke: string;
   strokeWidth: number;
   path: string;
-  paddingBottom: number = 50;
-  paddingTop: number = 50;
   ticks: number[];
 
   constructor() { 
     this.stroke = "#b52e31";
-    this.strokeWidth = 10;
+    this.strokeWidth = 4;
     this.ticks = [];
 
     for (var i = 0; i <= 10; i++) {
       this.ticks.push(i/10);
     }
-    
   }
 
   ngOnInit() {
-    this.path = `M50,${this.svgHeight - this.paddingBottom}H50V${this.paddingTop}H50`;
-  }
-
-  ngAfterViewInit() {
-    this.path = `M50,${this.svgHeight - this.paddingBottom}H50V${this.paddingTop}H50`;
+    this.path = `M${this.padding.left},${this.svgHeight - this.padding.bottom}H${this.padding.left}V${this.padding.top}`;
   }
 }

@@ -6,14 +6,9 @@ import { PathData } from '../models/PathData';
   templateUrl: './control-panel.component.html',
   styleUrls: ['./control-panel.component.css']
 })
-export class ControlPanelComponent implements OnInit {
+export class ControlPanelComponent {
 
   @Input() data:  PathData[];
 
   constructor() { }
-
-  ngOnInit() {
-    
-  }
-
 }

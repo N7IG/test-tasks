@@ -1,12 +1,13 @@
 <div #container id="svg-container" (window:resize)="onResize()">
   <svg id="svg-box">
-    <svg:g value-axis [svgHeight]="svgHeight"></svg:g>
-    <svg:g time-axis [svgWidth]="svgWidth" [svgHeight]="svgHeight"></svg:g>
+    <svg:g value-axis [svgHeight]="svgHeight" [padding]="padding"></svg:g>
+    <svg:g time-axis [svgWidth]="svgWidth" [svgHeight]="svgHeight" [padding]="padding"></svg:g>
     <svg:g app-path 
       *ngFor="let pathdata of data; index as i"
       [data]="data[i]" 
       [timeAxis]="timeAxis" 
-      [valueAxis]="valueAxis">
+      [valueAxis]="valueAxis"
+      [padding]="padding">
     </svg:g>
   </svg>
 </div>

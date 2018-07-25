@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TimeAxisComponent } from './time-axis.component';
 
 describe('TimeComponentComponent', () => {

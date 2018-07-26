@@ -35,7 +35,7 @@ export class SvgBoxComponent implements OnInit {
   getData(): void {
     this.dataService.updateData().subscribe(
       () => {
-        this.updateTime();
+        this.onResize();
       }, 
       () => console.log("Error")
     );

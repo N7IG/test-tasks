@@ -4,7 +4,6 @@ import { PathData } from '../../models/PathData';
 import { ScaleTime, ScaleLinear } from 'd3-scale';
 import { Point } from '../../models/Point';
 import { Padding } from '../../models/Padding';
-import { path } from 'd3-path';
 
 @Component({
   selector: '[app-path]',
@@ -24,10 +23,8 @@ export class PathComponent{
 
   //IS THAT OK??
   lineFunction(points: Point[]) {
-    // console.log("first: " + points[0].time.getMilliseconds());
     let pathString = line()
     .x((point) => { 
-      // console.log(this.timeAxis(point["time" as any]) + this.padding.left);
       return this.timeAxis(point["time" as any]) + this.padding.left; 
     })
     .y((point) => { 

@@ -9,15 +9,10 @@ import { Padding } from '../../models/Padding';
 export class ValueAxisComponent {
   @Input() svgHeight: number;
   @Input() padding: Padding;
-
-  stroke: string;
-  strokeWidth: number;
   path: string;
   ticks: number[];
 
   constructor() { 
-    this.stroke = "#b52e31";
-    this.strokeWidth = 4;
     this.ticks = [];
 
     for (var i = 0; i <= 10; i++) {

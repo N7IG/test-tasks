@@ -1,0 +1,19 @@
+
+#time-axis {
+    fill: none;
+    font-size: 10;
+    font-family: sans-serif;
+}
+
+#time-axis ::ng-deep path{
+    stroke: #b52e31;
+    stroke-width: 2px;
+}
+
+#time-axis ::ng-deep line{
+    stroke: #b52e31;
+}
+
+#time-axis ::ng-deep text{
+    fill: #dadada;
+}

@@ -1,17 +1,11 @@
-
 <svg:g fill="none" font-size="10" font-family="sans-serif" text-anchor="end">
   <svg:path class="domain" 
-    [attr.stroke]="stroke" 
-    [attr.stroke-width]="strokeWidth" 
     [attr.d]="path">
   </svg:path>
-  <svg:g 
+  <svg:g class="tick" 
     *ngFor="let tick of ticks" 
-    class="tick" 
-    opacity="1" 
-    [style.transform]="'translate(0,' + (padding.top + (svgHeight-padding.bottom-padding.top)*(1-tick)) + 'px)'"
-    >
-    <svg:line [attr.stroke]="stroke"  stroke-width="4" x1="40" x2="52"></line>
-    <svg:text fill="#fff" font-size="15" x="35" dy="0.32em">{{tick}}</text>
+    [style.transform]="'translate(0,' + (padding.top + (svgHeight-padding.bottom-padding.top)*(1-tick)) + 'px)'">
+    <svg:line x1="45" x2="51"></line>
+    <svg:text x="40" dy="0.32em">{{tick}}</text>
   </svg:g>
 </svg:g>

@@ -1,33 +1,33 @@
-import { Component, ElementRef, Input} from '@angular/core';
+import { Component, Input, OnChanges} from '@angular/core';
 import { Padding } from '../../models/Padding';
+import { select, Selection } from "d3-selection"
+import { ScaleTime } from 'd3-scale';
+import { axisBottom } from "d3-axis"
 
 @Component({
   selector: '[time-axis]',
   templateUrl: './time-axis.component.html',
   styleUrls: ['./time-axis.component.css']
 })
-export class TimeAxisComponent {
+export class TimeAxisComponent implements  OnChanges{
 
   @Input() svgWidth: number;
   @Input() svgHeight: number;
   @Input() padding: Padding;
+  @Input() timeAxis: ScaleTime<number, number>;
 
-  stroke: string;
-  strokeWidth: number;
-  path: string;
   ticks: number[];
+  axisSelection: Selection<any, HTMLElement, any, {}>;
 
-  constructor(element: ElementRef) { 
-    this.stroke = "#b52e31"
-    this.strokeWidth = 4;
-    this.ticks = [];
-
-    for (var i = 0; i <= 10; i++) {
-      this.ticks.push(i/10);
-    }
-  }
+  constructor() {}
 
   ngOnInit() {
-    this.path =`M50,${this.svgHeight - this.padding.bottom}V${this.svgHeight - this.padding.bottom}H`;
+    this.axisSelection = select("#time-axis");
+  }
+
+  ngOnChanges() {
+    if(this.axisSelection){
+      this.axisSelection.call(axisBottom(this.timeAxis));
+    }
   }
 }

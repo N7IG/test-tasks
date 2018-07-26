@@ -1,0 +1,14 @@
+path {
+    stroke: #b52e31;
+    stroke-width: 2px;
+}
+
+line {
+    stroke: #b52e31;
+    stroke-width: 2px;
+}
+
+text {
+    fill: #dadada;
+    font-size: 11px;
+}

@@ -1,7 +1,7 @@
-import { Point } from "./Point";
+// import { Point } from "./Point";
 
 export class PathData {
-    data: Point[];
+    data: {value: number, time: Date}[];
     color: string;
     isVisible: boolean;
 
@@ -15,8 +15,9 @@ export class PathData {
         }
     }
 
-    addPoint(newPoint: Point) {
-        this.data.push(newPoint);
+    addPoint(newPoint: {value: number, time: Date}) {
+        this.data = [...this.data, newPoint];
+        // push(newPoint);
     }
 
     randomColor() {

@@ -8,7 +8,6 @@ import { PathData } from '../../models/PathData';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PathControlComponent  {
-
   @Input() index:  number;
   @Input() pathdata:  PathData;
 

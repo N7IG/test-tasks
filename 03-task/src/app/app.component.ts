@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataService } from './data.service';
 import { PathData } from './models/PathData';
-import { Point } from './models/Point';
+// import { Point } from './models/Point';
 
 @Component({
   selector: 'app-root',
@@ -21,13 +21,13 @@ export class AppComponent implements OnDestroy, OnInit {
 
   getData(): void {
     this.dataService.updateData().subscribe(
-      (values: Point[]) => {
-
+      (values: {value: number, time: Date}[]) => {
 
         if (!this.data) {
-          this.data = values.map((value: Point) => new PathData());
+          this.data = values.map(() => new PathData());
         }
         this.data.forEach((pathdata: PathData, index: number) => pathdata.addPoint(values[index]));
+        this.data = [...this.data];
       }, 
       () => console.log("Error")
     );

@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Padding } from '../../models/Padding';
 
 @Component({
   selector: '[value-axis]',
   templateUrl: './value-axis.component.html',
-  styleUrls: ['./value-axis.component.css']
+  styleUrls: ['./value-axis.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ValueAxisComponent {
   @Input() svgHeight: number;

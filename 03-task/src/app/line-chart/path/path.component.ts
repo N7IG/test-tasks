@@ -1,14 +1,15 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { line } from 'd3-shape';
 import { PathData } from '../../models/PathData';
 import { ScaleTime, ScaleLinear } from 'd3-scale';
-import { Point } from '../../models/Point';
+// import { Point } from '../../models/Point';
 import { Padding } from '../../models/Padding';
 
 @Component({
   selector: '[app-path]',
   templateUrl: './path.component.html',
-  styleUrls: ['./path.component.css']
+  styleUrls: ['./path.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PathComponent{
 
@@ -21,8 +22,7 @@ export class PathComponent{
 
   constructor() { }
 
-  //IS THAT OK??
-  lineFunction(points: Point[]) {
+  lineFunction(points: {value: number, time: Date}[]) {
     let pathString = line()
     .x((point) => { 
       return this.timeAxis(point["time" as any]) + this.padding.left; 

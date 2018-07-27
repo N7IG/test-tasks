@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SvgBoxComponent } from './svg-box.component';
+import { LineChartComponent } from './line-chart.component';
 
-describe('SvgBoxComponent', () => {
-  let component: SvgBoxComponent;
-  let fixture: ComponentFixture<SvgBoxComponent>;
+describe('LineChartComponent', () => {
+  let component: LineChartComponent;
+  let fixture: ComponentFixture<LineChartComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SvgBoxComponent ]
+      declarations: [ LineChartComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SvgBoxComponent);
+    fixture = TestBed.createComponent(LineChartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

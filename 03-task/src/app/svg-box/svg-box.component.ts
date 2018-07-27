@@ -35,7 +35,12 @@ export class SvgBoxComponent implements OnInit {
   getData(): void {
     this.dataService.updateData().subscribe(
       () => {
-        this.onResize();
+        // this.onResize();
+        
+        this.svgWidth = (<HTMLElement>this.nativeElement.firstChild).clientWidth;
+        this.timeAxis = scaleTime().range([0, this.svgWidth - this.padding.right - this.padding.left ]);
+
+        this.updateTime(); 
       }, 
       () => console.log("Error")
     );

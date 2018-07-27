@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataService } from './data.service';
 import { PathData } from './models/PathData';
 import { Point } from './models/Point';
@@ -8,9 +8,10 @@ import { Point } from './models/Point';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy, OnInit {
   title = 'app';
   data:  PathData[];
+  subscribtion: any;
 
   constructor(private dataService: DataService) {  }
 
@@ -30,5 +31,11 @@ export class AppComponent {
       }, 
       () => console.log("Error")
     );
+  }
+
+  ngOnDestroy() {
+    if (this.subscribtion) {
+      this.subscribtion.unsubscribe();
+    }
   }
 }

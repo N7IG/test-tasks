@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, interval} from 'rxjs';
+import { Observable, interval, Observer} from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { PathData } from './models/PathData';
 import { Point } from './models/Point';

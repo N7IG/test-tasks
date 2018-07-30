@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, Output, EventEmitter, OnInit } from '@angular/core';
 import { PathData } from '../../models/PathData';
 
 @Component({
@@ -7,9 +7,22 @@ import { PathData } from '../../models/PathData';
   styleUrls: ['./path-control.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PathControlComponent  {
+export class PathControlComponent {
   @Input() index:  number;
   @Input() pathdata:  PathData;
+  @Output()
+  colorChangeEvent: EventEmitter<{color: string, index: number}> = new EventEmitter<{color: string, index: number}>();
+  @Output()
+  visibilityToggleEvent: EventEmitter<{isVisible: boolean, index: number}> = new EventEmitter<{isVisible: boolean, index: number}>();
 
   constructor() { }
+
+  changeColor(event: Event) {
+    console.log(this.pathdata.color);
+    this.colorChangeEvent.emit({color: (<HTMLInputElement>event.target).value, index: this.index});
+  }
+
+  toggleVisibility(event: Event) {
+    this.visibilityToggleEvent.emit({isVisible: (<HTMLInputElement>event.target).checked, index: this.index});
+  }
 }

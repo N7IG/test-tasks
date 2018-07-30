@@ -3,4 +3,8 @@
     <img src="http://bignine.info/img/angular.png" alt="angular_logo" class="angular_logo" >
 </div>
 <line-chart [data]="data" ></line-chart>
-<app-control-panel [data]="data"></app-control-panel>
+<app-control-panel 
+    [data]="data"
+    (colorChangeEvent)="changeColor($event)"
+    (visibilityToggleEvent)="toggleVisibility($event)">
+</app-control-panel>

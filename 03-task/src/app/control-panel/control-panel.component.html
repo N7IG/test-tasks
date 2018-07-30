@@ -5,5 +5,7 @@
   class="path-controls" 
   *ngFor="let pathdata of data; index as i" 
   [index]="i" 
-  [pathdata]="pathdata" >
+  [pathdata]="pathdata" 
+  (colorChangeEvent)="changeColor($event)"
+  (visibilityToggleEvent)="toggleVisibility($event)">
 </app-path-control>

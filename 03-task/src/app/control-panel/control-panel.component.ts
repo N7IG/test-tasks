@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, EventEmitter, Output } from '@angular/core';
 import { PathData } from '../models/PathData';
 
 @Component({
@@ -10,6 +10,18 @@ import { PathData } from '../models/PathData';
 export class ControlPanelComponent {
 
   @Input() data:  PathData[];
+  @Output()
+  colorChangeEvent: EventEmitter<{color: string, index: number}> = new EventEmitter<{color: string, index: number}>();
+  @Output()
+  visibilityToggleEvent: EventEmitter<{isVisible: boolean, index: number}> = new EventEmitter<{isVisible: boolean, index: number}>();
 
   constructor() { }
+
+  changeColor(config: {color: string, index: number}) {
+    this.colorChangeEvent.emit(config);
+  }
+
+  toggleVisibility(config: {isVisible: boolean, index: number}) {
+    this.visibilityToggleEvent.emit(config);
+  }
 }

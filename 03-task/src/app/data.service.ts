@@ -1,28 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Observable, interval} from 'rxjs';
 import { map, startWith, publishReplay, refCount } from 'rxjs/operators';
-// import { Point } from './models/Point';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  private dataStream: Observable<{value: number, time: Date}[]>;
+  private data$: Observable<{value: number, time: Date}[]>;
   pathNumber: number = 5;
 
   constructor() { }
 
   updateData(): Observable<{value: number, time: Date}[]> {
-    if (!this.dataStream) {
-      this.dataStream = interval(500).pipe(
-        // tap(val => console.log('FROM SERVICE: ', val)),
+    if (!this.data$) {
+      this.data$ = interval(500).pipe(
         map(() => this.getNewPoints()),
         startWith(this.getNewPoints()),
         publishReplay(1),
         refCount()
       );
     }
-    return this.dataStream;
+    return this.data$;
   }
 
   getNewPoints(): {value: number, time: Date}[] {  

@@ -1,5 +1,5 @@
 import { Component, Input, ChangeDetectionStrategy, Output, EventEmitter, OnInit } from '@angular/core';
-import { PathData } from '../../models/PathData';
+import { Config } from '../../models/Config';
 
 @Component({
   selector: 'app-path-control',
@@ -9,7 +9,7 @@ import { PathData } from '../../models/PathData';
 })
 export class PathControlComponent {
   @Input() index:  number;
-  @Input() pathdata:  PathData;
+  @Input() config:  Config;
   @Output()
   colorChangeEvent: EventEmitter<{color: string, index: number}> = new EventEmitter<{color: string, index: number}>();
   @Output()
@@ -18,7 +18,6 @@ export class PathControlComponent {
   constructor() { }
 
   changeColor(event: Event) {
-    console.log(this.pathdata.color);
     this.colorChangeEvent.emit({color: (<HTMLInputElement>event.target).value, index: this.index});
   }
 

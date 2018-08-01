@@ -1,7 +1,8 @@
-import { Component, OnInit, ElementRef, ViewChild, Input, OnChanges, SimpleChange, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Input, OnChanges, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { scaleTime, ScaleTime, scaleLinear, ScaleLinear } from "d3-scale";
 import { PathData } from '../models/PathData';
 import { Padding } from '../models/Padding';
+import { Config } from '../models/Config';
 
 @Component({
 	selector: 'line-chart',
@@ -11,7 +12,8 @@ import { Padding } from '../models/Padding';
 })
 export class LineChartComponent implements OnInit, OnChanges {
 
-  	@Input() data: PathData[];
+	@Input() allData: PathData[];
+	@Input() allConfig: Config[];
 
 	padding: Padding = {left: 50, top: 50, right: 20, bottom: 50};
 	timeAxis: ScaleTime<number, number>;
@@ -32,8 +34,7 @@ export class LineChartComponent implements OnInit, OnChanges {
   	}
   
   	ngOnChanges(ch: SimpleChanges) {
-		if(ch.data) {
-			// this.onResize();
+		if(ch) {
 			this.svgWidth = (<HTMLElement>this.nativeElement.firstChild).clientWidth;
 			this.timeAxis = scaleTime().range([0, this.svgWidth - this.padding.right - this.padding.left ]);
 			this.updateTime(); 
@@ -42,7 +43,7 @@ export class LineChartComponent implements OnInit, OnChanges {
 
   	updateTime() {
 		const time = new Date();  
-		const left = this.data[0].data[0].time;
+		const left = this.allData[0][0].time;
 		this.timeAxis.domain([left, time]); 
   	}
 

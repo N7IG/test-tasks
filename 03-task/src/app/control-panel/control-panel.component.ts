@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, EventEmitter, Output } from '@angular/core';
-import { PathData } from '../models/PathData';
+import { Component, Input, ChangeDetectionStrategy, EventEmitter, Output } from '@angular/core';
+import { Config } from '../models/Config';
 
 @Component({
   selector: 'app-control-panel',
@@ -9,7 +9,7 @@ import { PathData } from '../models/PathData';
 })
 export class ControlPanelComponent {
 
-  @Input() data:  PathData[];
+  @Input() allConfig:  Config[];
   @Output()
   colorChangeEvent: EventEmitter<{color: string, index: number}> = new EventEmitter<{color: string, index: number}>();
   @Output()

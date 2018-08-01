@@ -1,5 +1,5 @@
 <svg:path class="domain" 
-    *ngIf="data.isVisible"
-    [attr.stroke]="data.color" 
-    [attr.d]="lineFunction(data.data)">
+    *ngIf="config.isVisible"
+    [attr.stroke]="config.color"
+    [attr.d]="lineFunction(data)">
 </svg:path>

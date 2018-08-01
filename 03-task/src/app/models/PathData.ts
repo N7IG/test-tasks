@@ -1,5 +1,1 @@
-export interface PathData {
-    data: {value: number, time: Date}[];
-    color: string;
-    isVisible: boolean;
-}
+export type PathData = {value: number, time: Date}[];

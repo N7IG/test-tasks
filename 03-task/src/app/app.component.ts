@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataService } from './data.service';
 import { PathData } from './models/PathData';
+import { Config } from './models/Config';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,8 @@ import { PathData } from './models/PathData';
 })
 export class AppComponent implements OnDestroy, OnInit {
   title = 'app';
-  data:  PathData[];
+  allData:  PathData[];
+  allConfig: Config[];
   subscribtion: any;
 
   constructor(private dataService: DataService) {  }
@@ -21,12 +23,14 @@ export class AppComponent implements OnDestroy, OnInit {
   getData(): void {
     this.dataService.updateData().subscribe(
       (values: {value: number, time: Date}[]) => {
-
-        if (!this.data) {
-          this.data = values.map(() => <PathData>{data: [], color: this.randomColor(), isVisible: true });
+        if (!this.allData) {
+          this.allData = values.map(() => []);
+          this.allConfig = values.map(() => { 
+            return { color: this.randomColor(), isVisible: true } 
+          });
         }
-        this.data.forEach((pathdata: PathData, index: number) => pathdata.data.push((values[index])));
-        this.data = [...this.data];
+        this.allData.forEach((pathdata: PathData, index: number) => pathdata.push(values[index]));
+        this.allData = [...this.allData];
       }, 
       () => console.log("Error")
     );
@@ -42,11 +46,13 @@ export class AppComponent implements OnDestroy, OnInit {
   } 
 
   changeColor(config: {color: string, index: number}) {
-    this.data[config.index].color = config.color;
+    this.allConfig[config.index].color = config.color;
+    this.allConfig = [...this.allConfig];
   }
 
   toggleVisibility(config: {isVisible: boolean, index: number}) {
-    this.data[config.index].isVisible = config.isVisible;
+    this.allConfig[config.index].isVisible = config.isVisible;
+    this.allConfig = [...this.allConfig];
   }
 
   ngOnDestroy() {

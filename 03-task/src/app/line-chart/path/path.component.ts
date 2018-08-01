@@ -1,9 +1,9 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy} from '@angular/core';
 import { line } from 'd3-shape';
 import { PathData } from '../../models/PathData';
 import { ScaleTime, ScaleLinear } from 'd3-scale';
-// import { Point } from '../../models/Point';
 import { Padding } from '../../models/Padding';
+import { Config } from '../../models/Config';
 
 @Component({
   selector: '[app-path]',
@@ -11,16 +11,17 @@ import { Padding } from '../../models/Padding';
   styleUrls: ['./path.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PathComponent{
+export class PathComponent {
 
   @Input() timeAxis: ScaleTime<number, number>;
   @Input() valueAxis: ScaleLinear<number, number>;
   @Input() data: PathData;
+  @Input() config: Config;
   @Input() padding: Padding;
 
   strokeWidth: number = 2;
 
-  constructor() { }
+  constructor() {}
 
   lineFunction(points: {value: number, time: Date}[]) {
     let pathString = line()

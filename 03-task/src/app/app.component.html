@@ -2,9 +2,13 @@
     <h1 class="app-title">Powered by</h1> 
     <img src="http://bignine.info/img/angular.png" alt="angular_logo" class="angular_logo" >
 </div>
-<line-chart [data]="data" ></line-chart>
+<line-chart 
+    [allData]="allData" 
+    [allConfig]="allConfig">
+</line-chart>
 <app-control-panel 
-    [data]="data"
+    [allConfig]="allConfig"
     (colorChangeEvent)="changeColor($event)"
     (visibilityToggleEvent)="toggleVisibility($event)">
 </app-control-panel>
+<!-- no need to pass data, right? -->

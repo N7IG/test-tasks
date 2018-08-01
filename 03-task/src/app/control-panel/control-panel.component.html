@@ -3,9 +3,9 @@
 </h2>
 <app-path-control 
   class="path-controls" 
-  *ngFor="let pathdata of data; index as i" 
+  *ngFor="let config of allConfig; index as i" 
   [index]="i" 
-  [pathdata]="pathdata" 
+  [config]="config" 
   (colorChangeEvent)="changeColor($event)"
   (visibilityToggleEvent)="toggleVisibility($event)">
 </app-path-control>

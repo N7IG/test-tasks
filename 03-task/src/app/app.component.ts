@@ -2,6 +2,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataService } from './data.service';
 import { PathData } from './models/PathData';
 import { Config } from './models/Config';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { DataActions } from './actions/dataActions';
+
+interface AppState {
+  counter: number;
+}
 
 @Component({
   selector: 'app-root',
@@ -10,15 +17,30 @@ import { Config } from './models/Config';
 })
 export class AppComponent implements OnDestroy, OnInit {
   title = 'app';
-  allData:  PathData[];
-  allConfig: Config[];
+  allData:  PathData[]; //this should be in Store 
+  allConfig: Config[]; //as well as this
   subscribtion: any;
 
-  constructor(private dataService: DataService) {  }
+  counter: Observable<number>;
+
+  constructor(private dataService: DataService, 
+    private store: Store<AppState>,
+    private dataActions: DataActions
+  ) { 
+    this.counter = store.select('counter');
+  }
 
   ngOnInit() {
-    this.getData();
-  }  
+    // this.getData();
+    this.getNewData();
+    //here i should dispatch action
+    //  -> effect works and fetches new points, dispatching its own action 
+    //  -> reducer works? updating the state
+  }
+
+  getNewData() { //rename
+    this.store.dispatch(this.dataActions.loadNewPoints());
+  }
 
   getData(): void {
     this.dataService.updateData().subscribe(

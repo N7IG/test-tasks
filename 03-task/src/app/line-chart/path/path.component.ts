@@ -21,7 +21,7 @@ export class PathComponent {
 
   strokeWidth: number = 2;
 
-  constructor() {}
+  constructor() { }
 
   lineFunction(points: {value: number, time: Date}[]) {
     let pathString = line()

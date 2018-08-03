@@ -3,6 +3,8 @@ import { scaleTime, ScaleTime, scaleLinear, ScaleLinear } from "d3-scale";
 import { PathData } from '../models/PathData';
 import { Padding } from '../models/Padding';
 import { Config } from '../models/Config';
+import { Store } from '@ngrx/store';
+import { AppState } from '../models/State';
 
 @Component({
 	selector: 'line-chart',
@@ -20,13 +22,13 @@ export class LineChartComponent implements OnInit, OnChanges {
 	valueAxis: ScaleLinear<number, number>;
 	leftTimeBound: Date;
 	nativeElement: HTMLElement;
-	svgWidth: number ;
-	svgHeight: number ;
+	svgWidth: number;
+	svgHeight: number;	
 	
 	@ViewChild("container", {read: ElementRef}) container: ElementRef;
 
-  	constructor(element: ElementRef) {
-		this.nativeElement = element.nativeElement;    
+  	constructor(element: ElementRef, private store: Store<AppState>) {
+		this.nativeElement = element.nativeElement;
   	}
 
   	ngOnInit() {

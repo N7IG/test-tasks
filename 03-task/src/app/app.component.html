@@ -4,17 +4,10 @@
 </div>
 <line-chart 
     [allData]="allData" 
-    [allConfig]="allConfig">
+    [allConfig]="(config$ | async).config">
 </line-chart>
 <app-control-panel 
-    [allConfig]="allConfig"
+    [allConfig]="(config$ | async).config"
     (colorChangeEvent)="changeColor($event)"
     (visibilityToggleEvent)="toggleVisibility($event)">
 </app-control-panel>
-
-<br>
-<button (click)="increment()">Increment</button>
-<div>Current Count: {{ counter | async }}</div>
-<button (click)="decrement()">Decrement</button>
-
-<button (click)="reset()">Reset Counter</button>

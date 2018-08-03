@@ -4,11 +4,8 @@ import { PathData } from './models/PathData';
 import { Config } from './models/Config';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { DataActions } from './actions/dataActions';
-
-interface AppState {
-  counter: number;
-}
+import * as fromConfigActions from "./actions/configActions";
+import { AppState } from './models/State';
 
 @Component({
   selector: 'app-root',
@@ -17,39 +14,26 @@ interface AppState {
 })
 export class AppComponent implements OnDestroy, OnInit {
   title = 'app';
-  allData:  PathData[]; //this should be in Store 
-  allConfig: Config[]; //as well as this
-  subscribtion: any;
+  allData:  PathData[]; 
+  subscription: any;
 
-  counter: Observable<number>;
+  config$: Observable<Config[]>;
 
   constructor(private dataService: DataService, 
-    private store: Store<AppState>,
-    private dataActions: DataActions
-  ) { 
-    this.counter = store.select('counter');
-  }
+    private store: Store<AppState>
+  ) { } 
 
   ngOnInit() {
-    // this.getData();
-    this.getNewData();
-    //here i should dispatch action
-    //  -> effect works and fetches new points, dispatching its own action 
-    //  -> reducer works? updating the state
-  }
-
-  getNewData() { //rename
-    this.store.dispatch(this.dataActions.loadNewPoints());
+    this.getData();
+    this.config$ = this.store.select('config'); // TODO: вынесни в сервис
   }
 
   getData(): void {
-    this.dataService.updateData().subscribe(
+    this.subscription = this.dataService.updateData().subscribe(
       (values: {value: number, time: Date}[]) => {
         if (!this.allData) {
           this.allData = values.map(() => []);
-          this.allConfig = values.map(() => { 
-            return { color: this.randomColor(), isVisible: true } 
-          });
+          this.store.dispatch(new fromConfigActions.InitializeConfig(values.length));
         }
         this.allData.forEach((pathdata: PathData, index: number) => pathdata.push(values[index]));
         this.allData = [...this.allData];
@@ -67,19 +51,18 @@ export class AppComponent implements OnDestroy, OnInit {
     return color;
   } 
 
-  changeColor(config: {color: string, index: number}) {
-    this.allConfig[config.index].color = config.color;
-    this.allConfig = [...this.allConfig];
+  changeColor(config: {color: string, index: number}) {    
+    this.store.dispatch(new fromConfigActions.SetColor(config));
   }
 
   toggleVisibility(config: {isVisible: boolean, index: number}) {
-    this.allConfig[config.index].isVisible = config.isVisible;
-    this.allConfig = [...this.allConfig];
+    this.store.dispatch(new fromConfigActions.SetVisibility(config));
   }
 
   ngOnDestroy() {
-    if (this.subscribtion) {
-      this.subscribtion.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
   }
 }
+

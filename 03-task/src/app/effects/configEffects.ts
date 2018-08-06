@@ -10,8 +10,8 @@ import { Config } from '../models/Config';
 @Injectable()
 export class ConfigEffects {
     constructor(
-        private actions$: Actions 
-        //and configService
+        private actions$: Actions,
+        private configService: ConfigService
     ) { }
 
     @Effect()
@@ -20,7 +20,7 @@ export class ConfigEffects {
         .pipe(
             switchMap((action: fromConfigActions.InitializeConfig) => {
                 
-                return new ConfigService().getRandomConfig(action.payload) //TODO: dep injection instead of new Service
+                return this.configService.getRandomConfig(action.payload);
             }), 
             map((configs: Config[]) => {
                 return new fromConfigActions.InitializeConfigSuccess(configs);

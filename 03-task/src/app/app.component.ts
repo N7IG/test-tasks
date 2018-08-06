@@ -25,7 +25,7 @@ export class AppComponent implements OnDestroy, OnInit {
 
   ngOnInit() {
     this.getData();
-    this.config$ = this.store.select('config'); // TODO: вынесни в сервис
+    this.config$ = this.store.select('config');
   }
 
   getData(): void {

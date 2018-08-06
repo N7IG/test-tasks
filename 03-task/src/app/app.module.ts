@@ -29,5 +29,3 @@ import { ConfigEffects } from './effects/configEffects';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-  // LLLOOK AT BLOGS TO LINK EFFECTS
